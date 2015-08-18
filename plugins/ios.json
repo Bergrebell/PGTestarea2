@@ -1,0 +1,29 @@
+{
+    "prepare_queue": {
+        "installed": [],
+        "uninstalled": []
+    },
+    "config_munge": {
+        "files": {
+            "config.xml": {
+                "parents": {
+                    "/*": [
+                        {
+                            "xml": "<feature name=\"CarrierPlugin\"><param name=\"ios-package\" value=\"CarrierPlugin\" /></feature>",
+                            "count": 1
+                        }
+                    ]
+                }
+            }
+        }
+    },
+    "installed_plugins": {
+        "cordova-plugin-whitelist": {
+            "PACKAGE_NAME": "org.test.area"
+        },
+        "com.cordovaprogramming.carrier": {
+            "PACKAGE_NAME": "org.test.area"
+        }
+    },
+    "dependent_plugins": {}
+}

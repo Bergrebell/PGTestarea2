@@ -1,0 +1,10 @@
+#accelerometer {
+    position: absolute;
+    bottom: 0;
+
+}
+
+#ajax {
+	position: relative;
+	top: 30px;
+}
