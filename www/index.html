@@ -111,14 +111,13 @@
             <h1>Noise level</h1>
         </div>
         <div data-role="main" class="ui-content">
-            <form name="noiseform" id="noiseform" action="https://posttestserver.com/post.php" method="POST">
+            <form name="noiseform" id="noiseform" action="http://localhost:3000/request/" method="POST">
                 <label for="noise">From silent to noisy (1 is silent)</label>
                 <input type="range" name="rate" id="rate" min="1" max="7" />
                 <input type="submit" name="go" id="go" value="Submit"/>
             </form>
             <div class="navigation">
                 <a href="#page2" data-transition="slidedown">Back</a>
-                <a href="#page4" data-transition="slideup" class="skipbtn">Skip</a>
             </div>
         </div> 
     </div>

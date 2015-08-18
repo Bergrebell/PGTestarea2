@@ -127,29 +127,37 @@ $(document).ready(function() {
                            
            function onSuccessNoise(result) {
                addToGlobal("NoiseS", result);
-               console.log("NoiseS" + result);
-               console.log(globalData);
-           
            };
                            
          carrier.getAverageNoise(onSuccessNoise, onFailure);
-
          
          var form = $(this);
         
          // add to globalData
          addToGlobal("NoiseU", formvalue);
          
-         $.ajax({
+         /*$.ajax({
                 url: form.attr('action'),
                 type: form.attr("method"),
                 data: { Noise : formvalue },
                 //Callback function - success if ajax call worked!
                 success: function() {
-                console.log("successful last ajax request with formvalue!")
-                window.location.href = "#page3";
+                    console.log("successful last ajax request with formvalue!")
+                },
+                error: function() {
+                console.log("ajax request not successful");
                 }
-        });
+                
+        });*/
+                    
+                           
+        var posting = $.post("http://localhost:3000/request", globalData);
+                           
+           posting.done(function( data ) {
+                    console.log("posting done");
+            });
+                           
+        
                            
         console.log(globalData);
 

@@ -12,20 +12,24 @@
 	<dict>
 		<key>2561B7583022535075BDCF5E55E35C6ADC2BC328</key>
 		<string>https://github.com/Bergrebell/PGTestarea.git</string>
+		<key>981A66BDDC86655DD350101B7B07FEAC0890F165</key>
+		<string>https://github.com/Bergrebell/PGTestarea2.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>platforms/ios/PGTestarea.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>2561B7583022535075BDCF5E55E35C6ADC2BC328</key>
+		<string>../../../../../PGTestarea</string>
+		<key>981A66BDDC86655DD350101B7B07FEAC0890F165</key>
 		<string>../../../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>https://github.com/Bergrebell/PGTestarea.git</string>
+	<string>https://github.com/Bergrebell/PGTestarea2.git</string>
 	<key>IDESourceControlProjectVersion</key>
 	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>2561B7583022535075BDCF5E55E35C6ADC2BC328</string>
+	<string>981A66BDDC86655DD350101B7B07FEAC0890F165</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
@@ -35,6 +39,14 @@
 			<string>2561B7583022535075BDCF5E55E35C6ADC2BC328</string>
 			<key>IDESourceControlWCCName</key>
 			<string>PGTestarea</string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>981A66BDDC86655DD350101B7B07FEAC0890F165</string>
+			<key>IDESourceControlWCCName</key>
+			<string>PGTestarea2</string>
 		</dict>
 	</array>
 </dict>
