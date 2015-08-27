@@ -7,8 +7,45 @@ $(document).ready(function() {
     // Make jQuery Mobile framework configuration changes here
     $.support.cors = true;
     $.mobile.allowCrossDomainPages = true;
-    });
-    
+});
+
+    // *** start of mosquitto settings ***
+    /*var wsbroker = "86.119.35.36";  //mqtt websocket enabled broker
+    var wsport = 1883 // port for above
+
+    var client = new Paho.MQTT.Client(wsbroker, wsport,
+                                    "myclientid_" + parseInt(Math.random() * 100, 10));
+        client.onConnectionLost = function (responseObject) {
+            console.log("connection lost: " + responseObject.errorMessage);
+        };
+        client.onMessageArrived = function (message) {
+        console.log(message.destinationName, ' -- ', message.payloadString);
+    };
+    var options = {
+        timeout: 3,
+        onSuccess: function () {
+            console.log("mqtt connected");
+            // Connection succeeded; subscribe to our topic, you can add multile lines of these
+            client.subscribe('/World', {qos: 1});
+
+            //use the below if you want to publish to a topic on connect
+            message = new Paho.MQTT.Message("Hello");
+            message.destinationName = "/World";
+
+            client.send(message);
+
+            },
+            onFailure: function (message) {
+                          console.log("Connection failed: " + message.errorMessage);
+        }
+    };
+                  
+    function init() {
+    client.connect(options);
+    }*/
+    // *** end of mosquitto settings ***
+                  
+
                   
 // *** start setup for ajax data sending ***
     var globalData = {};
@@ -16,6 +53,8 @@ $(document).ready(function() {
     function addToGlobal(name, value) {
                   globalData[name] = value;
     };
+         
+                  
 // *** end setup for ajax data sending ***
       
                   
@@ -43,7 +82,6 @@ $(document).ready(function() {
     });
 
     $('#tempform').submit(function (event) {
-
         event.preventDefault();
         console.log("preventDefault Temp")
                           
@@ -70,9 +108,11 @@ $(document).ready(function() {
             data: { Temperature : form.data('clicked') },
             //Callback function - success if ajax call worked!
             success: function() {
-                console.log("success")
-                window.location.href = "#page2";
-            }
+               window.location.href = "#page2";
+               },
+                    error: function() {
+                        window.location.href = "#page2";
+               }
         });
     });
 // *** End AJAX Temp ***
@@ -100,6 +140,12 @@ $(document).ready(function() {
                            
        // add to globalData
        addToGlobal("LightU", formvalue);
+                           
+       function onSuccessNoise(result) {
+            addToGlobal("NoiseS", result);
+       };
+       
+       carrier.getAverageNoise(onSuccessNoise, onFailure);
 
         $.ajax({
                 url: form.attr('action'),
@@ -109,7 +155,10 @@ $(document).ready(function() {
                 success: function() {
                     console.log("success")
                     window.location.href = "#page3";
-                }
+               },
+                error: function() {
+                    window.location.href = "#page3";
+               }
             });
     });
 // *** End AJAX Light ***
@@ -124,17 +173,20 @@ $(document).ready(function() {
          
          var formvalue = $('#rate').val();
          console.log(formvalue);
-                           
-           function onSuccessNoise(result) {
-               addToGlobal("NoiseS", result);
-           };
-                           
-         carrier.getAverageNoise(onSuccessNoise, onFailure);
          
          var form = $(this);
         
          // add to globalData
          addToGlobal("NoiseU", formvalue);
+        // display globalData in testpage
+        //$("#results").append( "<p>" + JSON.stringify(globalData) + "</p>");
+        
+       $("#results").click( function()
+          {
+            alert( JSON.stringify(globalData) );
+          }
+        );
+        
          
          /*$.ajax({
                 url: form.attr('action'),
@@ -154,7 +206,7 @@ $(document).ready(function() {
         var posting = $.post("http://localhost:3000/request", globalData);
                            
            posting.done(function( data ) {
-                        console.log("posting done");
+                    console.log("posting done");
             });
                            
         
@@ -182,6 +234,10 @@ $(document).on("pagecreate", "#page2", function () {
 // *** End Scale enhancement ***
                   
                   
+
+
+                  
+
 
 
 

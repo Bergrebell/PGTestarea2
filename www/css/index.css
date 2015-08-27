@@ -4,6 +4,7 @@
 
 }
 
+
 #go {
         position:absolute;
         bottom:15px;
@@ -15,9 +16,6 @@
 	top: 30px;
 }
 
-div.ui-content {
-    height: 150px;
-}
 
 .skipbtn {
 	float: right;
