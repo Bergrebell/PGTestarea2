@@ -2,23 +2,67 @@
 console.log("index.js loaded");
 
 $(document).ready(function() {
+
     $( document ).bind( "mobileinit", function() {
-    // Make jQuery Mobile framework configuration changes here
-    $.support.cors = true;
-    $.mobile.allowCrossDomainPages = true;
-});
-
+        // Make jQuery Mobile framework configuration changes here
+        $.support.cors = true;
+        $.mobile.allowCrossDomainPages = true;
+    });
     
-                  
-
-                  
-// *** start setup for ajax data sending ***
+    
+// *** start setup for data sending ***
     function addToGlobal(name, value) {
                   globalData[name] = value;
     };
          
                   
-// *** end setup for ajax data sending ***
+// *** end setup for data sending ***
+    
+
+
+// *** start check for first app launch ***
+    var applaunchCount = window.localStorage.getItem('launchCount5');
+    
+
+    //Check if it already exists or not
+    if(applaunchCount){
+       //This is a second time launch, and count = applaunchCount
+       console.log("second time app launch");
+       var appUID = window.localStorage.getItem('appUID');
+       console.log("Old AppID: "+ appUID);
+
+       
+    }else{
+      //Local storage is not set, hence first time launch. set the local storage item
+      window.localStorage.setItem('launchCount5',1);
+      console.log("first time app launch");
+      
+      // *** start create appID ***
+      
+        var ALPHABET = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        var ID_LENGTH = 8;
+
+        var generate = function() {
+          var rtn = '';
+          for (var i = 0; i < ID_LENGTH; i++) {
+            rtn += ALPHABET.charAt(Math.floor(Math.random() * ALPHABET.length));
+          }
+          return rtn;
+        }
+        
+        appID = generate();
+        console.log("New AppID: "+ appID);
+        window.localStorage.setItem('appUID', appID);
+      
+      // *** end create appID ***
+    }
+    var appUID = window.localStorage.getItem('appUID');
+    // add ID to Global
+    addToGlobal("AppID", appUID);
+    
+// *** end check for first app launch ***
+
+                  
       
                   
                   
@@ -49,27 +93,6 @@ $(document).ready(function() {
     $('#tempform').submit(function (event) {
         event.preventDefault();
         console.log("preventDefault Temp")
-        
-        /*
-        
-            // set localstorage variable to check if ID is set
-        if(window.localStorage.getItem("has_run") == '') {
-            //do some stuff if has not loaded before
-            // generate id --> var id = 12345;
-
-            window.localStorage.setItem("has_run", "true");
-            console.log("set has_run to true");
-        }
-        
-        var HasRunValue = window.localStorage.getItem("has_run");
-        console.log("HasRun: " + HasRunValue);
-        
-        window.localStorage.setItem("key", "value");
-        
-        var TestRunValue = window.localStorage.getItem("key");
-        console.log("TestRunValue: " + TestRunValue);
-
-        */
                           
                           
         function initNoiseSensor(result) {
