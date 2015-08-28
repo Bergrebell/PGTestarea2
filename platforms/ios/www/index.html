@@ -20,28 +20,32 @@
         <link rel="stylesheet" type="text/css" href="css/index.css" />
         <!-- Javascript, Jquery & Jquery mobile directories in the head bc otherwise short flash without jqm css-->
         <script type="text/javascript" charset="utf-8">
+            var testData = { "a": "b", "c": "d" };
+            
+            var globalData = {};
+
             
             function doSomething1() {
                 carrier.getAverageNoise(onSuccess2, onFailure);
             }
+            
+            function doSomething2() {
+                carrier.getLuminosity(onSuccess2, onFailure);
+            }
+            
+            
+            function onSuccess2(result) {
+                var resStr = "Result: " + result;
+                console.log(resStr);
+                alert(resStr);
+            }
+            
+            function onFailure(err) {
+                console.log("onFailure: " + JSON.stringify(err));
+                alert("Failure: " + err);
+            }
         
-        function doSomething2() {
-            carrier.getLuminosity(onSuccess2, onFailure);
-        }
-        
-        
-        function onSuccess2(result) {
-            var resStr = "Result: " + result;
-            console.log(resStr);
-            alert(resStr);
-        }
-        
-        function onFailure(err) {
-            console.log("onFailure: " + JSON.stringify(err));
-            alert("Failure: " + err);
-        }
-        
-            </script>
+        </script>
 
 
 
@@ -124,7 +128,11 @@
             <button onclick="doSomething1();"> Get Average Noise </button>
             <button onclick="doSomething2();"> Get Luminosity </button>
             <button id="results"> Show Values </button>
-            <button onclick="startClient();"> Send MQTT </button>
+            <button onclick="initClient();"> init MQTT </button>
+            <button onclick="sendTestMessage();"> Send MqttTestMsg </button>
+            <button onclick="sendTestJSON();"> Send TestJSON </button>
+
+
 
 
 

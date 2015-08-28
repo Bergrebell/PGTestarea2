@@ -2,54 +2,17 @@
 console.log("index.js loaded");
 
 $(document).ready(function() {
-
     $( document ).bind( "mobileinit", function() {
     // Make jQuery Mobile framework configuration changes here
     $.support.cors = true;
     $.mobile.allowCrossDomainPages = true;
 });
 
-    // *** start of mosquitto settings ***
-    /*var wsbroker = "86.119.35.36";  //mqtt websocket enabled broker
-    var wsport = 1883 // port for above
-
-    var client = new Paho.MQTT.Client(wsbroker, wsport,
-                                    "myclientid_" + parseInt(Math.random() * 100, 10));
-        client.onConnectionLost = function (responseObject) {
-            console.log("connection lost: " + responseObject.errorMessage);
-        };
-        client.onMessageArrived = function (message) {
-        console.log(message.destinationName, ' -- ', message.payloadString);
-    };
-    var options = {
-        timeout: 3,
-        onSuccess: function () {
-            console.log("mqtt connected");
-            // Connection succeeded; subscribe to our topic, you can add multile lines of these
-            client.subscribe('/World', {qos: 1});
-
-            //use the below if you want to publish to a topic on connect
-            message = new Paho.MQTT.Message("Hello");
-            message.destinationName = "/World";
-
-            client.send(message);
-
-            },
-            onFailure: function (message) {
-                          console.log("Connection failed: " + message.errorMessage);
-        }
-    };
-                  
-    function init() {
-    client.connect(options);
-    }*/
-    // *** end of mosquitto settings ***
+    
                   
 
                   
 // *** start setup for ajax data sending ***
-    var globalData = {};
-                  
     function addToGlobal(name, value) {
                   globalData[name] = value;
     };
@@ -66,7 +29,9 @@ $(document).ready(function() {
         //alert(resStr);
         return result;
     }
+ 
 
+                  
 
     function onFailure(err) {
         console.log("onFailure: " + JSON.stringify(err));
@@ -84,6 +49,28 @@ $(document).ready(function() {
     $('#tempform').submit(function (event) {
         event.preventDefault();
         console.log("preventDefault Temp")
+        
+        /*
+        
+            // set localstorage variable to check if ID is set
+        if(window.localStorage.getItem("has_run") == '') {
+            //do some stuff if has not loaded before
+            // generate id --> var id = 12345;
+
+            window.localStorage.setItem("has_run", "true");
+            console.log("set has_run to true");
+        }
+        
+        var HasRunValue = window.localStorage.getItem("has_run");
+        console.log("HasRun: " + HasRunValue);
+        
+        window.localStorage.setItem("key", "value");
+        
+        var TestRunValue = window.localStorage.getItem("key");
+        console.log("TestRunValue: " + TestRunValue);
+
+        */
+                          
                           
         function initNoiseSensor(result) {
             console.log("initNoiseSensor" + result);
@@ -245,70 +232,3 @@ $(document).on("pagecreate", "#page2", function () {
 });
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// *** Start API***
-
-// Start Accelerometer
-// The watch id references the current `watchAcceleration`
-/*    var watchID = null;
-    // Wait for Cordova to load
-    //
-    document.addEventListener("deviceready", onDeviceReady, false);
-    // Cordova is ready
-    //
-    function onDeviceReady() {
-        startWatch();
-    }
-    // Start watching the acceleration
-    //
-    function startWatch() {
-        // Update acceleration every 3 seconds
-        var options = { frequency: 100 };
-
-        watchID = navigator.accelerometer.watchAcceleration(onSuccess, onError, options);
-    }
-    // Stop watching the acceleration
-    //
-    function stopWatch() {
-        if (watchID) {
-            navigator.accelerometer.clearWatch(watchID);
-            watchID = null;
-        }
-    }
-
-    // onSuccess: Get a snapshot of the current acceleration
-    //
-    function onSuccess(acceleration) {
-        var element = document.getElementById('accelerometer');
-        element.innerHTML = 'Acceleration X: ' + acceleration.x + '<br />' +
-                            'Acceleration Y: ' + acceleration.y + '<br />' +
-                            'Acceleration Z: ' + acceleration.z + '<br />' +
-                            'Timestamp: '      + acceleration.timestamp + '<br />';
-    }
-
-    // onError: Failed to get the acceleration
-    //
-    function onError() {
-        alert('onError!');
-    }
-*/ 
-// *** End API***

@@ -40,7 +40,7 @@ function sendTestMessage() {
 }
 
 function sendTestJSON() {
-    jsonString = JSON.stringify(testData);
+    jsonString = JSON.stringify(globalData);
     message = new Paho.MQTT.Message(jsonString);
     message.destinationName = "/Test";
     client.send(message);
